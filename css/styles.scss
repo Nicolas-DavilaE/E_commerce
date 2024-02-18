@@ -51,13 +51,19 @@ body {
     cursor: pointer;
     @include flexbox(nowrap, row, center);
 
-    .header_img {
-      width: 100px;
+    .content_icon {
+      .header_img {
+        width: 100%;
+      }
     }
   }
 
   .header_logo {
     width: 100px;
+
+    .content_logo {
+      width: 100%;
+    }
   }
 }
 

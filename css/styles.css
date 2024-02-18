@@ -39,11 +39,14 @@ body {
   flex-direction: row;
   justify-content: center;
 }
-.header .header_menu .header_img {
-  width: 100px;
+.header .header_menu .content_icon .header_img {
+  width: 100%;
 }
 .header .header_logo {
   width: 100px;
+}
+.header .header_logo .content_logo {
+  width: 100%;
 }
 
 main .banner {
