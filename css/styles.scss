@@ -1,0 +1,284 @@
+$fontFamily: "Lexend", Arial, Helvetica, sans-serif;
+$color: rgb(255, 255, 255);
+
+@mixin flexbox($flex-wrap, $flex-direcion, $justify-content) {
+  display: flex;
+  flex-wrap: $flex-wrap;
+  flex-direction: $flex-direcion;
+  justify-content: $justify-content;
+}
+
+@mixin measure($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin font($font-size, $font-weight, $color, $text-align) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+  color: $color;
+  text-align: $text-align;
+}
+
+%products_items {
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px 0px;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  background-color: $color;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  @include font(15px, 300, #1d1d1d, none);
+  font-family: $fontFamily;
+  background-color: #e5e5e5;
+}
+
+.header {
+  @include measure(100%, 70px);
+  padding: 5px 20px;
+  background-color: #333;
+  @include flexbox(nowrap, row, space-between);
+  align-items: center;
+  box-sizing: border-box;
+
+  .header_menu {
+    width: 35px;
+    cursor: pointer;
+    @include flexbox(nowrap, row, center);
+
+    .header_img {
+      width: 100px;
+    }
+  }
+
+  .header_logo {
+    width: 100px;
+  }
+}
+
+main {
+  .banner {
+    width: 100%;
+    margin: 0 0 15px;
+    padding: 40px 0;
+    text-align: center;
+    background-image: url("../img/banner_casio.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 47%;
+    color: $color;
+    border-radius: 0px 0px 5px 5px;
+
+    .banner_title {
+      width: 100%;
+      margin: 10px;
+      @include font(30px, 600, rgb(200 160 20), none);
+    }
+
+    .banner_moreproducts {
+      width: 100%;
+      margin: 0 auto;
+      opacity: 0.7;
+      @include font(25px, 400, $color, none);
+    }
+  }
+
+  .products {
+    @extend %products_items;
+
+    .products_items {
+      height: 90%;
+      margin: auto;
+      cursor: pointer;
+      text-align: center;
+
+      .products_img {
+        @include measure(80px, 60%);
+        margin-top: auto;
+      }
+
+      .products_title {
+        @include font(17px, 500, #1d1d1d, none);
+        margin: 10px 0 5px;
+      }
+
+      .products_price {
+        @include font(15px, 300, #1d1d1d, none);
+        margin: 2px;
+      }
+    }
+  }
+
+  .car {
+    @include measure(300px, 100%);
+    background-color: $color;
+    padding: 25px;
+    position: fixed;
+    right: -100%;
+    top: 100px;
+    box-sizing: border-box;
+    box-shadow: -19px -1px 22px -15px rgb(0, 0, 0, 0.3);
+
+    .car_title {
+      width: 100%;
+      @include font(20px, 500, #1d1d1d, center);
+      box-sizing: border-box;
+    }
+
+    .car_purchase {
+      border-bottom: 1px solid #333;
+      @include flexbox(nowrap, row, space-between);
+      align-items: center;
+      padding: 12px 0;
+      box-sizing: border-box;
+
+      .purchase_img {
+        width: 20%;
+      }
+
+      .purchase_price:nth-child(3) {
+        font-weight: 500;
+      }
+
+      .purchase_title,
+      .purchase_price {
+        text-align: center;
+      }
+
+      .purchase_delete {
+        width: 25px;
+        cursor: pointer;
+
+        .purchase_deleteicon {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  header {
+    padding: 15px;
+  }
+
+  header > img {
+    width: 60px;
+  }
+
+  .header_menu {
+    width: 30px;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .products_img {
+    width: 150px;
+  }
+
+  .car {
+    width: 480px;
+    top: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    padding: 30px 0;
+
+    .banner_title {
+      font-size: 18px;
+    }
+    .banner_moreproducts {
+      font-size: 16px;
+    }
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+    padding: 10px;
+
+    .products_img {
+      width: 100%;
+      max-width: 200px;
+      margin-bottom: 10px;
+
+      .products_title,
+      .products_price {
+        padding: 0 10px;
+      }
+    }
+  }
+
+  .car {
+    width: 100%;
+    box-shadow: none;
+
+    .car_title {
+      padding: 15px 0;
+    }
+
+    .car_purchase {
+      flex-direction: column;
+      align-items: center;
+
+      .purchase_deleteicon {
+        width: 100%;
+      }
+    }
+  }
+  @media (max-width: 480px) {
+    .banner {
+      padding: 30px 0;
+    }
+
+    .banner_title {
+      font-size: 18px;
+    }
+
+    .banner_moreproducts {
+      font-size: 16px;
+    }
+
+    .products {
+      grid-template-columns: 1fr;
+      padding: 10px;
+    }
+
+    .products_img {
+      width: 100%;
+      max-width: 200px;
+      margin-bottom: 10px;
+    }
+
+    .products_title,
+    .products_price {
+      padding: 0 10px;
+    }
+
+    .car {
+      width: 100%;
+      box-shadow: none;
+    }
+
+    .car_title {
+      padding: 15px 0;
+    }
+
+    .car_purchase {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .purchase_deleteicon {
+      width: 100%;
+    }
+  }
+}
